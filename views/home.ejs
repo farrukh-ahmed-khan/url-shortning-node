@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+      }
+      h1 {
+        margin-top: 50px;
+        font-size: 3em;
+      }
+    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home PAGE</title>
+  </head>
+  <body>
+    <h1>URL SHORTNER</h1>
+    <% if (locals.id) { %>
+    <p>
+      Your shortened URL is:
+      <a href="http://localhost:8001/url/<%= id %>"
+        >http://localhost:8001/<%= id %></a
+      >
+    </p>
+    <% } %>
+    <div class="form-wrapper">
+      <form method="post" action="/url">
+        <input
+          type="text"
+          name="redirectUrl"
+          id="url"
+          placeholder="Enter your original URL"
+        />
+        <button type="submit">Shorten</button>
+      </form>
+    </div>
+
+    <div>
+      <h2>Top 10 most visited URLs</h2>
+      <ul>
+        <% for (let i = 0; i < urls.length; i++) { %>
+        <li>
+          <a href="http://localhost:8001/<%= urls[i].shortId %>">
+            http://localhost:8001/url/<%= urls[i].shortId %>
+          </a>
+          - <%= urls[i].visitHistory.length %> visits
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </body>
+</html>
