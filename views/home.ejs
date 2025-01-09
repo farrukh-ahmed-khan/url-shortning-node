@@ -38,7 +38,7 @@
         <button type="submit">Shorten</button>
       </form>
     </div>
-
+    <% if (locals.urls) { %>
     <div>
       <h2>Top 10 most visited URLs</h2>
       <ul>
@@ -52,5 +52,6 @@
         <% } %>
       </ul>
     </div>
+    <% } %>
   </body>
 </html>
