@@ -18,8 +18,8 @@ app.use(cookieParser());
 app.use(logReqRes("log.txt"));
 
 app.use("/url", restrictToLoggedinUserOnly, urlRoute);
-app.use("/", staticRoute);
-app.use("/api/user", checkAuth, userRoute);
+app.use("/", checkAuth, staticRoute);
+app.use("/api/user", userRoute);
 
 app.set("view engine", "ejs");
 app.set("veiws", path.resolve("./views"));
