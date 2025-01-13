@@ -1,5 +1,11 @@
 const { getUser } = require("../service/auth");
 
+function checkForAuthentication(req, res, next){
+  const  autho= req.headers["authorization"]
+}
+
+
+
 async function restrictToLoggedinUserOnly(req, res, next) {
   // const userUid = req.cookies?.uid;
   const userUid = req.headers["Authorization"] //for api bearer token
