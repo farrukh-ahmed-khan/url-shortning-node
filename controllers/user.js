@@ -1,7 +1,6 @@
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const User = require("../models/user");
-const { setUser }= require("../service/auth")
-
+const { setUser } = require("../service/auth");
 
 async function handleUserSignup(req, res) {
   const { name, email, password } = req.body;
@@ -19,10 +18,11 @@ async function handleUserLogin(req, res) {
       error: "invalid username or password",
     });
   }
-  
+
   const token = setUser(user);
-  res.cookie("uid", token)
-  return res.redirect("/")
+
+  // res.cookie("uid", token)
+  return res.json({ token });
 
   // return res.status(201).json({message: "User created"});
   // return res.redirect("/");
