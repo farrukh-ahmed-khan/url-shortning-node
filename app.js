@@ -1,3 +1,5 @@
+const dotenv = require('dotenv')
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -11,7 +13,7 @@ const Url = require("./models/url");
 const { logReqRes } = require("./middlewares");
 
 const app = express();
-const port = 8001;
+const port = process.env.PORT || 8001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,7 +45,7 @@ app.use("/api/user", userRoute);
 app.set("view engine", "ejs");
 app.set("veiws", path.resolve("./views"));
 
-connectToMongoDB("mongodb://localhost:27017/url-shortener");
+connectToMongoDB(process.env.MONGO_URL);
 
 app.get("/:shortId", async (req, res) => {
   const shortId = req.params.shortId;
